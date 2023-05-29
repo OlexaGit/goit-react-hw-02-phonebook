@@ -1,7 +1,6 @@
-const Contacts = ({ title, contacts }) => {
+const Contacts = ({ contacts }) => {
   return (
     <>
-      <h2>{title}</h2>
       <ul>
         {contacts.map(({ id, name, number }) => (
           <li key={id}>
