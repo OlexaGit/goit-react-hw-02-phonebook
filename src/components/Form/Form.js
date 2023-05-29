@@ -16,8 +16,6 @@ class Form extends Component {
   };
   handleSubmit = evt => {
     evt.preventDefault();
-    // const form = evt.currentTarget;
-    // const nameEdite = form.elements.name.value;
     this.props.onSubmit(this.state);
     this.reset();
   };

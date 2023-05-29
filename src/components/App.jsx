@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import Notiflix from 'notiflix';
 import Form from './Form/Form';
 import Contacts from './Contacts/Contacts';
 import Filter from './Filter/Filter';
-
-// model.id = nanoid();
 
 export class App extends Component {
   state = {
@@ -19,13 +18,17 @@ export class App extends Component {
 
   searchInputId = nanoid();
 
-  deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
+  nameMatch = ({ name, number }) => {
+    const { contacts } = this.state;
+    const normalizedFind = name.toLocaleLowerCase();
+    return contacts.find(
+      contact => contact.name.toLocaleLowerCase() === normalizedFind
+    )
+      ? Notiflix.Notify.warning(`${name} is already in contacts!`)
+      : this.formSubmitHandler(name, number);
   };
 
-  formSubmitHandler = ({ name, number }) => {
+  formSubmitHandler = (name, number) => {
     const contact = {
       id: nanoid(),
       name,
@@ -48,14 +51,20 @@ export class App extends Component {
     );
   };
 
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
   render() {
-    const { contacts, filter } = this.state;
+    const { filter } = this.state;
     const getVisibleContacts = this.getVisibleContacts();
 
     return (
       <div>
         <h1>Phonebook</h1>
-        <Form onSubmit={this.formSubmitHandler} />
+        <Form onSubmit={this.nameMatch} />
         <h2>Contacts</h2>
         <Filter valueFilter={filter} onChange={this.changeFilter} />
         <Contacts
