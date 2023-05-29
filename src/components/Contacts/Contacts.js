@@ -14,4 +14,5 @@ const Contacts = ({ contacts, onDeleteContact }) => {
     </>
   );
 };
+
 export default Contacts;

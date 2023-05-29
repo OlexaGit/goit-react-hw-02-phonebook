@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import Form from './Form/Form';
@@ -75,3 +76,9 @@ export class App extends Component {
     );
   }
 }
+App.propTypes = {
+  state: PropTypes.shape({
+    contacts: PropTypes.arrayOf(PropTypes.string.isRequired),
+    filter: PropTypes.string.isRequired,
+  }),
+};
