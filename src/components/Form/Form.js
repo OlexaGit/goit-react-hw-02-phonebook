@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import css from './Form.module.css';
 
 class Form extends Component {
   state = {
@@ -25,24 +26,22 @@ class Form extends Component {
   render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor={this.nameInputId}>
-              Name
-              <input
-                type="text"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleInputChange}
-                id={this.nameInputId}
-                pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                required
-              />
-            </label>
-          </div>
+        <form onSubmit={this.handleSubmit} className={css.form}>
+          <label htmlFor={this.nameInputId}>Name</label>
+          <input
+            className={css.formInput}
+            type="text"
+            name="name"
+            value={this.state.name}
+            onChange={this.handleInputChange}
+            id={this.nameInputId}
+            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
           <label htmlFor={this.numberInputId}>Number</label>
           <input
+            className={css.formInput}
             type="tel"
             name="number"
             value={this.state.number}
@@ -52,8 +51,9 @@ class Form extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-
-          <button type="submit">Add contact</button>
+          <button className={css.formButton} type="submit">
+            Add contact
+          </button>
         </form>
       </>
     );
