@@ -27,7 +27,6 @@ class Form extends Component {
   render() {
     return (
       <>
-        <h2>Phonebook</h2>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor={this.nameInputId}>
