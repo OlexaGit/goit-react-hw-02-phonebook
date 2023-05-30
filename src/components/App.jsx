@@ -19,7 +19,7 @@ export class App extends Component {
 
   searchInputId = nanoid();
 
-  nameMatch = ({ name, number }) => {
+  handleNameMatch = ({ name, number }) => {
     const { contacts } = this.state;
     const normalizedFind = name.toLocaleLowerCase();
     return contacts.find(
@@ -65,7 +65,7 @@ export class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <Form onSubmit={this.nameMatch} />
+        <Form onSubmit={this.handleNameMatch} />
         <h2>Contacts</h2>
         <Filter valueFilter={filter} onChange={this.changeFilter} />
         <Contacts
